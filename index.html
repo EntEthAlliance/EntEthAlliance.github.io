@@ -16,7 +16,7 @@
 
     /* Active-state visual treatment (badge + glow) */
     .active-grid li{border-color:rgba(122,162,255,.40);box-shadow:0 0 0 1px rgba(122,162,255,.10) inset, 0 18px 45px rgba(0,0,0,.35), 0 0 30px rgba(122,162,255,.24);} 
-    .active-grid li::before{content:"A";position:absolute;top:14px;left:14px;width:40px;height:40px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(140,170,255,1), rgba(112,128,255,1));color:#0b1220;font-weight:900;}
+    .active-grid li::before{content:"ACTIVE";position:absolute;top:14px;left:50%;transform:translateX(-50%);padding:6px 10px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(140,170,255,1), rgba(112,128,255,1));color:#0b1220;font-weight:950;font-size:11px;letter-spacing:.6px;}
 
     /* Inactive section should feel like an archive list (not the same card treatment) */
     .inactive-grid{grid-template-columns:1fr;}
@@ -25,7 +25,7 @@
     .inactive-grid .desc{display:none;}
 
     .row{display:flex;gap:10px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;margin-top:0;}
-    .active-grid .row{margin-top:28px;}
+    .active-grid .row{margin-top:42px;}
     .name{color:#9ad1ff;text-decoration:none;font-weight:900;}
     .name:hover{text-decoration:underline;}
     .meta{color:rgba(231,234,240,.7);font-size:12px;}
