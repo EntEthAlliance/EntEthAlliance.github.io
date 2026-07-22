@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- EEA-PAGES Analytics (GT-PL9524M) -->
@@ -9,100 +9,351 @@
     gtag('js', new Date());
     gtag('config', 'GT-PL9524M');
   </script>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EEA GitHub Pages Index</title>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EEA Resource Hub | Enterprise Ethereum Alliance</title>
+  <meta name="description" content="EEA's technical outputs, working group reports, and Ethereum enterprise resources.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://entethalliance.github.io/eea-design-system/tokens.css">
   <style>
-    body{margin:0;font-family:var(--eea-font);background:var(--eea-bg);color:var(--eea-text);}
-    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 60px;}
-    h1{margin:0 0 6px;font-size:28px;}
-    .sub{margin:0 0 12px;color:var(--eea-text-2);}
-    .toplinks{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 20px;}
-    .toplinks a{color:var(--eea-text-2);text-decoration:none;font-weight:700;font-size:12px;padding:8px 10px;border-radius:999px;border:1px solid var(--eea-border);background:rgba(255,255,255,.04);}
-    .toplinks a:hover{border-color:rgba(98,126,234,.45);box-shadow:0 0 0 1px rgba(98,126,234,.08) inset;}
-    h2{margin:26px 0 10px;font-size:18px;}
-    .note{margin:0 0 12px;color:var(--eea-text-2);}
-    .grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
-    .grid li{position:relative;background:var(--eea-bg-card);border:1px solid var(--eea-border);border-radius:12px;padding:16px 16px 14px;min-height:140px;}
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* Active-state visual treatment (badge + glow) */
-    .active-grid li{border-color:rgba(98,126,234,.40);box-shadow:0 0 0 1px rgba(98,126,234,.10) inset, 0 18px 45px rgba(0,0,0,.35), 0 0 30px rgba(98,126,234,.24);}
-    .active-grid li::before{content:"ACTIVE";position:absolute;top:14px;left:50%;transform:translateX(-50%);padding:6px 10px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, var(--eea-accent-hover), var(--eea-accent));color:var(--eea-bg);font-weight:950;font-size:11px;letter-spacing:.6px;}
+    body {
+      font-family: var(--eea-font);
+      background: var(--eea-bg);
+      color: var(--eea-text);
+      min-height: 100vh;
+      padding-top: 52px;
+    }
 
-    /* Special treatment for Working Group (WG) pages */
-    .active-grid li.wg{border-color:rgba(0,212,170,.45);box-shadow:0 0 0 1px rgba(0,212,170,.12) inset, 0 18px 45px rgba(0,0,0,.35), 0 0 34px rgba(0,212,170,.22);}
-    .active-grid li.wg::before{content:"WG";background:linear-gradient(180deg, rgba(0,230,185,1), var(--eea-success));}
+    /* ── Nav ─────────────────────────────────────────────────────────────── */
+    .eea-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: #0d0d14;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 0 1.5rem;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    }
 
-    /* Inactive section should feel like an archive list (not the same card treatment) */
-    .inactive-grid{grid-template-columns:1fr;}
-    .inactive-grid li{min-height:auto;background:transparent;border-style:dashed;opacity:.75;}
-    .inactive-grid li::before{display:none;}
-    .inactive-grid .desc{display:none;}
+    .eea-nav a { text-decoration: none; }
 
-    .row{display:flex;gap:10px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;margin-top:0;}
-    .active-grid .row{margin-top:42px;}
-    .name{color:var(--eea-accent);text-decoration:none;font-weight:900;}
-    .name:hover{text-decoration:underline;}
-    .meta{color:var(--eea-text-3);font-size:12px;}
-    .desc{margin-top:6px;color:var(--eea-text-2);}
-    .links{margin-top:8px;font-size:12px;color:var(--eea-text-3);}
-    .links a{color:var(--eea-text-2);}
-    .footer{margin-top:26px;font-size:12px;color:var(--eea-text-3);}
-    code{font-family:var(--eea-font-mono);}
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .nav-brand-badge {
+      background: #627eea;
+      color: #fff;
+      padding: 0.3rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .nav-brand em { font-style: normal; color: #627eea; }
+
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+    }
+    .nav-links a {
+      color: #888;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.7rem;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav-links a.active { color: #fff; background: rgba(98,126,234,0.2); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-brand em { display: none; }
+    }
+
+    /* ── Hero ────────────────────────────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(circle, var(--eea-accent-bg) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: 2.4rem; font-weight: 700;
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+    .hero h1 span { color: var(--eea-accent); }
+    .hero p {
+      font-size: 1.15rem; color: var(--eea-text-2);
+      max-width: 640px; margin: 0 auto;
+      position: relative;
+    }
+
+    /* ── Cards ───────────────────────────────────────────────────────────── */
+    .cards {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--eea-bg-card);
+      border: 1px solid var(--eea-border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-decoration: none;
+      color: var(--eea-text);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      border-color: var(--eea-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--eea-shadow-lg);
+    }
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--eea-accent-bg);
+      color: var(--eea-accent);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .card-icon svg {
+      width: 22px; height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .card h2 {
+      font-size: 1.25rem; font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .card p {
+      color: var(--eea-text-2);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+    .card-arrow {
+      margin-top: 1.5rem;
+      color: var(--eea-accent);
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .card:hover .card-arrow { gap: 10px; }
+
+    /* ── Section divider ────────────────────────────────────────────────── */
+    .section-label {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--eea-text-3);
+      border-top: 1px solid var(--eea-border);
+      padding-top: 2rem;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--eea-text-3);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--eea-border);
+    }
+    footer a { color: var(--eea-accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    :focus-visible {
+      outline: 2px solid var(--eea-accent);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition-duration: 0.01ms !important; }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.6rem; }
+      .hero p { font-size: 1rem; }
+      .cards { padding: 1.5rem 1rem 3rem; }
+      .card { padding: 1.5rem; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>EEA GitHub Pages</h1>
-    <p class="sub">Active pages from the Enterprise Ethereum Alliance — specs, working group outputs, and operational resources.</p>
-    <div class="toplinks">
-      <a href="https://entethalliance.org/">Website</a>
-      <a href="https://github.com/EntEthAlliance/">GitHub</a>
-      <a href="https://lu.ma/eea.eth">Luma</a>
-      <a href="https://www.linkedin.com/company/enterpriseethereumalliance/">LinkedIn</a>
-      <a href="https://x.com/EntEthAlliance">X (Twitter)</a>
+
+  <nav class="eea-nav">
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-badge">EEA</span>
+      <span>Enterprise <em>Ethereum</em> Alliance</span>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="active">Hub</a>
+      <a href="/ops-finance/finance.html">Finance</a>
+      <a href="/ops-finance/ethereum-101.html">Learn</a>
+      <a href="/ops-finance/institutional-crypto-market.html">Institutional</a>
+      <a href="/ops-solution-catalog/">Solutions</a>
+      <a href="https://entethalliance.org/" target="_blank" rel="noopener">Website ↗</a>
     </div>
+  </nav>
 
-    <h2>Active Pages</h2>
-<p class="note">Recently updated (last 6 months).</p>
-<ul class="grid active-grid">
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/rnd-rwa-erc3643-eas/">Shibui (RWA Identity Bridge)</a><span class="meta">Last update: 2026-04-15</span></div><div class="desc">Docs and demo for bridging EAS attestations into ERC-3643 token compliance (RWA identity enforcement).</div><div class="links"><a href="https://entethalliance.github.io/rnd-rwa-erc3643-eas/">Pages</a> · <a href="https://github.com/EntEthAlliance/rnd-rwa-erc3643-eas">Repo</a></div></li>
-<li class="wg"><div class="row"><a class="name" href="https://entethalliance.github.io/wg-crosschain/">Crosschain WG</a><span class="meta">Last update: 2026-04-13</span></div><div class="desc">Working group hub for crosschain interoperability specs, drafts, and supporting artifacts.</div><div class="links"><a href="https://entethalliance.github.io/wg-crosschain/">Pages</a> · <a href="https://github.com/EntEthAlliance/wg-crosschain">Repo</a></div></li>
-<li class="wg"><div class="row"><a class="name" href="https://entethalliance.github.io/wg-privacy/">Privacy WG</a><span class="meta">Last update: 2026-04-07</span></div><div class="desc">Interactive publication and materials from the EEA Privacy Working Group.</div><div class="links"><a href="https://entethalliance.github.io/wg-privacy/">Pages</a> · <a href="https://github.com/EntEthAlliance/wg-privacy">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/ops-finance/">Ops Finance (Education Hub)</a><span class="meta">Last update: 2026-03-22</span></div><div class="desc">The EEA’s central education hub: finance class, Ethereum 101, and builder-ready resources.</div><div class="links"><a href="https://entethalliance.github.io/ops-finance/">Pages</a> · <a href="https://github.com/EntEthAlliance/ops-finance">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/ops-solution-catalog/">Solution Catalog</a><span class="meta">Last update: 2025-12-19</span></div><div class="desc">EEA’s catalog of enterprise Ethereum solutions, vendors, and member-facing offerings.</div><div class="links"><a href="https://entethalliance.github.io/ops-solution-catalog/">Pages</a> · <a href="https://github.com/EntEthAlliance/ops-solution-catalog">Repo</a></div></li>
-</ul>
+  <section class="hero">
+    <h1>EEA <span>Resource Hub</span></h1>
+    <p>EEA's technical outputs, working group reports, and Ethereum enterprise resources.</p>
+  </section>
 
-    <h2>Inactive Pages</h2>
-<p class="note">No updates in the last 6 months (banner added; repos archived).</p>
-<ul class="grid inactive-grid">
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/wg-eta-registry/">wg-eta-registry</a><span class="meta">Last update: 2025-05-01</span></div><div class="desc">The repository for developing the EthTrust Security levels specification</div><div class="links"><a href="https://entethalliance.github.io/wg-eta-registry/">Pages</a> · <a href="https://github.com/EntEthAlliance/wg-eta-registry">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/wg-drama/">wg-drama</a><span class="meta">Last update: 2025-03-20</span></div><div class="desc">Defi Risk Assessment</div><div class="links"><a href="https://entethalliance.github.io/wg-drama/">Pages</a> · <a href="https://github.com/EntEthAlliance/wg-drama">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/wg-ethtrust-quality/">wg-ethtrust-quality</a><span class="meta">Last update: 2025-02-20</span></div><div class="desc">Ethereum Training Quality WG repository</div><div class="links"><a href="https://entethalliance.github.io/wg-ethtrust-quality/">Pages</a> · <a href="https://github.com/EntEthAlliance/wg-ethtrust-quality">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/testing-space/">testing-space</a><span class="meta">Last update: 2023-10-23</span></div><div class="desc">temporary testing repo</div><div class="links"><a href="https://entethalliance.github.io/testing-space/">Pages</a> · <a href="https://github.com/EntEthAlliance/testing-space">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/authority-to-operate/">authority-to-operate</a><span class="meta">Last update: 2023-07-05</span></div><div class="desc">—</div><div class="links"><a href="https://entethalliance.github.io/authority-to-operate/">Pages</a> · <a href="https://github.com/EntEthAlliance/authority-to-operate">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/testing-wg/">testing-wg</a><span class="meta">Last update: 2022-12-06</span></div><div class="desc">Testing Working Group</div><div class="links"><a href="https://entethalliance.github.io/testing-wg/">Pages</a> · <a href="https://github.com/EntEthAlliance/testing-wg">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/client-spec/">client-spec</a><span class="meta">Last update: 2022-11-21</span></div><div class="desc">The Enterprise Ethereum Client Specification</div><div class="links"><a href="https://entethalliance.github.io/client-spec/">Pages</a> · <a href="https://github.com/EntEthAlliance/client-spec">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/tokenization/">tokenization</a><span class="meta">Last update: 2022-09-26</span></div><div class="desc">A repository used by the Tokenization Interest Group</div><div class="links"><a href="https://entethalliance.github.io/tokenization/">Pages</a> · <a href="https://github.com/EntEthAlliance/tokenization">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/BFT-algo/">BFT-algo</a><span class="meta">Last update: 2021-09-07</span></div><div class="desc">Proposals for member-only discussion on BFT algorithm proposals</div><div class="links"><a href="https://entethalliance.github.io/BFT-algo/">Pages</a> · <a href="https://github.com/EntEthAlliance/BFT-algo">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/trusted-computing/spec.html">trusted-computing</a><span class="meta">Last update: 2021-07-07</span></div><div class="desc">Off-chain Trusted Compute specification (see spec.html).</div><div class="links"><a href="https://entethalliance.github.io/trusted-computing/spec.html">Pages</a> · <a href="https://github.com/EntEthAlliance/trusted-computing">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/eminent/">eminent</a><span class="meta">Last update: 2020-09-03</span></div><div class="desc">EEA Member repository for the Eminent Task Force of the Main Net Working Group</div><div class="links"><a href="https://entethalliance.github.io/eminent/">Pages</a> · <a href="https://github.com/EntEthAlliance/eminent">Repo</a></div></li>
-<li><div class="row"><a class="name" href="https://entethalliance.github.io/TokenTaxonomyFramework/">TokenTaxonomyFramework</a><span class="meta">Last update: 2020-06-02</span></div><div class="desc">THIS REPO HAS BEEN MOVED - https://interwork-alliance.github.io/TokenTaxonomyFramework/</div><div class="links"><a href="https://entethalliance.github.io/TokenTaxonomyFramework/">Pages</a> · <a href="https://github.com/EntEthAlliance/TokenTaxonomyFramework">Repo</a></div></li>
-</ul>
+  <section class="cards">
 
-    <h2>Redirects</h2>
-    <ul>
-      <li><a href="/solutioncat/">/solutioncat/</a></li>
-      <li><a href="/eea-fineth/">/eea-fineth/</a></li>
-    </ul>
+    <a href="/ops-finance/finance.html" class="card">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M3 22h18"/><path d="M6 18v-7"/><path d="M10 18v-7"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="m12 2 9 5H3l9-5Z"/></svg>
+      </div>
+      <h2>Global Finance Infrastructure Map</h2>
+      <p>How money moves, who controls it, and where Ethereum fits. An interactive visual guide to the world's financial plumbing — from central banks to DeFi.</p>
+      <div class="card-arrow">Explore the map →</div>
+    </a>
 
-    <div class="footer">
-      <div>Notes: Active = updated in the last ~6 months. Inactive repos are archived and include an on-site banner pointing to the EEA GitHub org.</div>
-      <div>Some repo links may be members-only (private repos can appear as 404 to unauthenticated visitors).</div>
-      <div>Last updated: 2026-04-16.</div>
-    </div>
-  </div>
+    <a href="/ops-finance/ethereum-101.html" class="card">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></svg>
+      </div>
+      <h2>Ethereum 101</h2>
+      <p>Understanding Ethereum — from the global computer concept to its architecture and why it works. Multi-language educational resources with interactive visuals.</p>
+      <div class="card-arrow">Start learning →</div>
+    </a>
+
+    <a href="/ops-finance/institutional-crypto-market.html" class="card">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M2 22h20"/><path d="M9 6h1"/><path d="M14 6h1"/><path d="M9 10h1"/><path d="M14 10h1"/><path d="M9 14h1"/><path d="M14 14h1"/></svg>
+      </div>
+      <h2>Institutional Crypto Market</h2>
+      <p>The institutional landscape — exchanges, custodians, prime brokers, and infrastructure providers powering enterprise crypto adoption.</p>
+      <div class="card-arrow">View landscape →</div>
+    </a>
+
+    <a href="/ops-finance/agents.html" class="card">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="12" rx="2"/><path d="M12 8V5"/><circle cx="12" cy="3.5" r="1.5"/><path d="M9 13v2"/><path d="M15 13v2"/></svg>
+      </div>
+      <h2>Ethereum Agents</h2>
+      <p>Building autonomous agents with Ethereum — how smart contracts enable trustless, programmable systems that act on your behalf.</p>
+      <div class="card-arrow">Discover agents →</div>
+    </a>
+
+    <a href="/ops-finance/trellis/index.html" class="card">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.7 6.8-4.4"/><path d="m8.6 13.3 6.8 4.4"/></svg>
+      </div>
+      <h2>Trellis — L2 Ecosystem Map</h2>
+      <p>Interactive force-directed visualization of Ethereum's Layer 2 landscape — rollup security stages, stablecoin liquidity, and network relationships at a glance.</p>
+      <div class="card-arrow">Explore the map →</div>
+    </a>
+
+    <a href="/ops-finance/crypto-custody/index.html" class="card">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m11 12 10-10"/><path d="m16 7 3 3"/></svg>
+      </div>
+      <h2>Crypto Custody Landscape</h2>
+      <p>Institutional guide to digital asset custody — self-custody vs. third-party models, provider categories, decision frameworks, and fiduciary considerations.</p>
+      <div class="card-arrow">Read the guide →</div>
+    </a>
+
+  </section>
+
+  <p class="section-label">Working Groups &amp; External Resources</p>
+
+  <section class="cards" style="padding-top: 1.5rem;">
+
+    <a href="/ops-policy-friday/" class="card" target="_blank" rel="noopener">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M8 21h8"/><path d="M4 7h16"/><path d="m6 7-3 6a3 3 0 0 0 6 0L6 7Z"/><path d="m18 7-3 6a3 3 0 0 0 6 0l-3-6Z"/></svg>
+      </div>
+      <h2>Policy Friday</h2>
+      <p>Weekly digest of US regulatory developments in crypto and blockchain — curated signals from Capitol Hill, the SEC, CFTC, and beyond.</p>
+      <div class="card-arrow">Read the digest ↗</div>
+    </a>
+
+    <a href="/ops-solution-catalog/" class="card" target="_blank" rel="noopener">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+      <h2>Solution Catalog</h2>
+      <p>Enterprise Ethereum solutions indexed by use case — a living registry of member-contributed implementations and reference architectures.</p>
+      <div class="card-arrow">Browse solutions ↗</div>
+    </a>
+
+    <a href="/rnd-rwa-erc3643-eas/" class="card" target="_blank" rel="noopener">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-3 8-10V5l-8-3-8 3v7c0 7 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+      </div>
+      <h2>Shibui — RWA &amp; Identity</h2>
+      <p>R&amp;D prototype bridging ERC-3643 tokenized real-world assets with Ethereum Attestation Service — on-chain identity and compliance infrastructure.</p>
+      <div class="card-arrow">Explore the project ↗</div>
+    </a>
+
+    <a href="/wg-privacy/privacy-report.html" class="card" target="_blank" rel="noopener">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      </div>
+      <h2>Privacy Report</h2>
+      <p>EEA Working Group analysis of privacy-enhancing technologies on Ethereum — ZKPs, confidential transactions, and enterprise data protection patterns.</p>
+      <div class="card-arrow">Read the report ↗</div>
+    </a>
+
+    <a href="/wg-ethereum-institute/" class="card" target="_blank" rel="noopener">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h2>Ethereum Institute</h2>
+      <p>The EEA Ethereum Institute Working Group — research, standards, and educational materials advancing enterprise Ethereum adoption.</p>
+      <div class="card-arrow">Visit the WG ↗</div>
+    </a>
+
+    <a href="/pages-index/" class="card">
+      <div class="card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+      <h2>All EEA GitHub Pages</h2>
+      <p>Full index of all active and archived EEA GitHub Pages sites — working group specs, research outputs, and reference implementations.</p>
+      <div class="card-arrow">View directory →</div>
+    </a>
+
+  </section>
+
+  <footer>
+    <p>© 2026 <a href="https://entethalliance.org" target="_blank" rel="noopener">Enterprise Ethereum Alliance</a>. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
